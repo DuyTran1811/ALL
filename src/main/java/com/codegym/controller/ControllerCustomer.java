@@ -5,10 +5,11 @@ import com.codegym.model.Province;
 import com.codegym.service.iml.CustomerService;
 import com.codegym.service.iml.ProvinceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-@RestController
+@Controller
 public class ControllerCustomer {
     @Autowired
     private CustomerService customerService;
@@ -58,12 +59,31 @@ public class ControllerCustomer {
         return modelAndView;
     }
 
-    @PostMapping("edit")
+    @PostMapping("/edit-customer")
     public ModelAndView editCustom(@ModelAttribute("customer") Customer customer) {
         customerService.save(customer);
         ModelAndView modelAndView = new ModelAndView("customer/edit");
         modelAndView.addObject("customer", customer);
         modelAndView.addObject("message", "Customer updated successfully");
         return modelAndView;
+    }
+
+    @GetMapping("delete/{id}")
+    public ModelAndView showDelete(@PathVariable Long id) {
+        Customer customer = customerService.findById(id);
+        ModelAndView modelAndView;
+        if (customer != null) {
+            modelAndView = new ModelAndView("customer/delete");
+            modelAndView.addObject("customer", customer);
+        } else {
+            modelAndView = new ModelAndView("error.404");
+        }
+        return modelAndView;
+    }
+
+    @PostMapping("delete-customer")
+    public String deleteCustomer(@ModelAttribute("customer") Customer customer){
+        customerService.remove(customer.getId());
+        return "redirect:customers";
     }
 }
