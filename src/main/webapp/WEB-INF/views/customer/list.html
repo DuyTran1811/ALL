@@ -36,10 +36,10 @@
                 <td th:text="${customer.province.name}"></td>
                 <td>
                     <a th:href="@{/edit/__${customer.id}__}">
-                        <button type="button" class="btn btn-success">Delete</button>
+                        <button type="button" class="btn btn-secondary">Edit</button>
                     </a>
                     <a th:href="@{/delete/__${customer.id}__}">
-                        <button type="button" class="btn btn-secondary">Edit</button>
+                        <button type="button" class="btn btn-success">Delete</button>
                     </a>
                 </td>
             </tr>
