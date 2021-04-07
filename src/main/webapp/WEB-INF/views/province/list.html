@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Customer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+    <h1>List Customer</h1>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="p : ${province}">
+            <tr>
+                <th scope="row" th:text="${p.id}"></th>
+                <td th:text="${p.name}"></td>
+                <td>
+                    <a th:href="@{/edit/__${p.id}__}">
+                        <button type="button" class="btn btn-secondary">Edit</button>
+                    </a>
+                    <a th:href="@{/delete/__${p.id}__}">
+                        <button type="button" class="btn btn-success">Delete</button>
+                    </a>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

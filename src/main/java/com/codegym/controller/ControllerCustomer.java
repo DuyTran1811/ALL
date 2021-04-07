@@ -59,7 +59,7 @@ public class ControllerCustomer {
         return modelAndView;
     }
 
-    @PostMapping("/edit-customer")
+    @PostMapping("edit-customer")
     public ModelAndView editCustom(@ModelAttribute("customer") Customer customer) {
         customerService.save(customer);
         ModelAndView modelAndView = new ModelAndView("customer/edit");
