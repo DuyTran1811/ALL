@@ -3,7 +3,9 @@ package com.codegym.service.iml;
 import com.codegym.model.Province;
 import com.codegym.prepositories.ProvinceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ProvinceService implements IProvinceService {
     @Autowired
     private ProvinceRepository provinceRepository;
